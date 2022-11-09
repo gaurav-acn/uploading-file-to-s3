@@ -14,4 +14,4 @@ zip -r $local_path . -x .git/ .git/*** .github/workflows/deploy.yml scripts/pipe
 pip3 install boto3
 
 # Run upload script
-python3 scripts/pipeline/upload_file_to_s3.py $bucketname $aws_key $aws_access_key $aws_access_secret $local_path
+python3 scripts/pipeline/upload_file_to_s3.py $aws_bucket_name $aws_key $aws_access_key $aws_access_secret $local_path
