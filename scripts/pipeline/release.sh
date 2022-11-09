@@ -1,4 +1,4 @@
-bucket_name=$1
+aws_bucket_name=$1
 aws_key=$2
 aws_access_key=$3
 aws_access_secret=$4
