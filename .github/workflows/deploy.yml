@@ -44,4 +44,4 @@ jobs:
           #parameter-overrides: "EC2InstanceType=t2.micro"
      # Upload in S3 bucket   
       - name: Release to S3
-        run: bash scripts/pipeline/release.sh ${{secrets.AWS_Bucket_Name}} "folder1/myapp.zip" ${{secrets.AWS_Access_Key}} ${{secrets.AWS_Access_Secret}} "myapp.zip"
+        run: bash scripts/pipeline/release.sh ${{secrets.AWS_Bucket_Name}} "ETLFOLDER/etlcode.zip" ${{secrets.AWS_Access_Key}} ${{secrets.AWS_Access_Secret}} "etlcode.zip"
