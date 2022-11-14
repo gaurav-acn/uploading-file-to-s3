@@ -43,7 +43,7 @@ Resources:
       BucketName: tes3-raw-dev
       VersioningConfiguration:
         Status: Enabled
- bucket4:
+  bucket4:
     Type: 'AWS::S3::Bucket'
     DeletionPolicy: Retain
     Properties:
