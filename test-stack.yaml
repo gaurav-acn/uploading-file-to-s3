@@ -21,13 +21,35 @@
 #       InstanceType: !Ref EC2InstanceType
 #       SecurityGroups:
 #         - !Ref HTTPSecurityGroup
-let env = 'dev'
 Resources:
-  S3Bucket:
+  bucket1:
     Type: 'AWS::S3::Bucket'
     DeletionPolicy: Retain
     Properties:
-      BucketName: etlcodeupload-%env
+      BucketName: entergy-bdi-raw-dev
+      VersioningConfiguration:
+        Status: Enabled
+  bucket2:
+    Type: 'AWS::S3::Bucket'
+    DeletionPolicy: Retain
+    Properties:
+      BucketName: entergy-bdi-dataquality-dev
+      VersioningConfiguration:
+        Status: Enabled
+  bucket3:
+    Type: 'AWS::S3::Bucket'
+    DeletionPolicy: Retain
+    Properties:
+      BucketName: entergy-bdi-curated-dev
+      VersioningConfiguration:
+        Status: Enabled
+ bucket4:
+    Type: 'AWS::S3::Bucket'
+    DeletionPolicy: Retain
+    Properties:
+      BucketName: entergy-bdi-datamart-dev
+      VersioningConfiguration:
+        Status: Enabled
 
 #   HTTPSecurityGroup:
 #     Type: AWS::EC2::SecurityGroup
