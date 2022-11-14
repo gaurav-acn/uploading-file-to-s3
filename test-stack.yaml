@@ -29,6 +29,10 @@ Resources:
       BucketName: tes1-raw-dev
       VersioningConfiguration:
         Status: Enabled
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: 'aws:kms'
   bucket2:
     Type: 'AWS::S3::Bucket'
     DeletionPolicy: Retain
@@ -36,6 +40,10 @@ Resources:
       BucketName: tes2-raw-dev
       VersioningConfiguration:
         Status: Enabled
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: 'aws:kms'
   bucket3:
     Type: 'AWS::S3::Bucket'
     DeletionPolicy: Retain
@@ -43,6 +51,10 @@ Resources:
       BucketName: tes3-raw-dev
       VersioningConfiguration:
         Status: Enabled
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: 'aws:kms'
   bucket4:
     Type: 'AWS::S3::Bucket'
     DeletionPolicy: Retain
@@ -50,6 +62,10 @@ Resources:
       BucketName: tes4-raw-dev
       VersioningConfiguration:
         Status: Enabled
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: 'aws:kms'
 
 #   HTTPSecurityGroup:
 #     Type: AWS::EC2::SecurityGroup
