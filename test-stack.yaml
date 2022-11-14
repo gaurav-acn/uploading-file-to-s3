@@ -21,51 +21,45 @@
 #       InstanceType: !Ref EC2InstanceType
 #       SecurityGroups:
 #         - !Ref HTTPSecurityGroup
+
+AWSTemplateFormatVersion: 2010-09-09
+Description: >
+  This templates demonstrates the creation of a simple S3. 
+  bucket. It allows for parameterising the bucket name and
+  a few other attributes.
+Parameters:
+  BucketName: 
+    Type: String
+    Description: The name of the bucket.
+  BucketAccessControl:
+    Type: String
+    Default: Private
+    AllowedValues:
+    - Private
+    - PublicRead
+    - PublicReadWrite
+    - AuthenticatedRead
+    - LogDeliveryWrite
+    - BucketOwnerRead
+    - BucketOwnerFullControl
+    - AwsExecRead
+    Description: Access control configuration for the bucket (default is Private).
+    VersioningConfiguration:
+      Status: Enabled
+    BucketEncryption:
+      ServerSideEncryptionConfiguration:
+        - ServerSideEncryptionByDefault:
+            SSEAlgorithm: 'aws:kms'
+    
 Resources:
-  bucket1:
-    Type: 'AWS::S3::Bucket'
-    DeletionPolicy: Retain
+  Bucket:
+    Type: AWS::S3::Bucket
     Properties:
-      BucketName: tes1-raw-dev
-      VersioningConfiguration:
-        Status: Enabled
-      BucketEncryption:
-        ServerSideEncryptionConfiguration:
-          - ServerSideEncryptionByDefault:
-              SSEAlgorithm: 'aws:kms'
-  bucket2:
-    Type: 'AWS::S3::Bucket'
-    DeletionPolicy: Retain
-    Properties:
-      BucketName: tes2-raw-dev
-      VersioningConfiguration:
-        Status: Enabled
-      BucketEncryption:
-        ServerSideEncryptionConfiguration:
-          - ServerSideEncryptionByDefault:
-              SSEAlgorithm: 'aws:kms'
-  bucket3:
-    Type: 'AWS::S3::Bucket'
-    DeletionPolicy: Retain
-    Properties:
-      BucketName: tes3-raw-dev
-      VersioningConfiguration:
-        Status: Enabled
-      BucketEncryption:
-        ServerSideEncryptionConfiguration:
-          - ServerSideEncryptionByDefault:
-              SSEAlgorithm: 'aws:kms'
-  bucket4:
-    Type: 'AWS::S3::Bucket'
-    DeletionPolicy: Retain
-    Properties:
-      BucketName: tes4-raw-dev
-      VersioningConfiguration:
-        Status: Enabled
-      BucketEncryption:
-        ServerSideEncryptionConfiguration:
-          - ServerSideEncryptionByDefault:
-              SSEAlgorithm: 'aws:kms'
+      BucketName: !Ref BucketName
+      AccessControl: !Ref BucketAccessControl      
+      Tags:
+      - Key: Name
+        Value: !Join ['', [!Ref "AWS::StackName", "-Bucket"]]
 
 #   HTTPSecurityGroup:
 #     Type: AWS::EC2::SecurityGroup
