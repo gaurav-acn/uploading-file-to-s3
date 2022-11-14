@@ -21,12 +21,13 @@
 #       InstanceType: !Ref EC2InstanceType
 #       SecurityGroups:
 #         - !Ref HTTPSecurityGroup
+let env = 'dev'
 Resources:
   S3Bucket:
     Type: 'AWS::S3::Bucket'
     DeletionPolicy: Retain
     Properties:
-      BucketName: etlcodeupload
+      BucketName: etlcodeupload-%env
 
 #   HTTPSecurityGroup:
 #     Type: AWS::EC2::SecurityGroup
