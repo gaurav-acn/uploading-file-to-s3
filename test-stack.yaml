@@ -26,28 +26,28 @@ Resources:
     Type: 'AWS::S3::Bucket'
     DeletionPolicy: Retain
     Properties:
-      BucketName: entergy-bdi-raw-dev
+      BucketName: tes1-raw-dev
       VersioningConfiguration:
         Status: Enabled
   bucket2:
     Type: 'AWS::S3::Bucket'
     DeletionPolicy: Retain
     Properties:
-      BucketName: entergy-bdi-dataquality-dev
+      BucketName: tes2-raw-dev
       VersioningConfiguration:
         Status: Enabled
   bucket3:
     Type: 'AWS::S3::Bucket'
     DeletionPolicy: Retain
     Properties:
-      BucketName: entergy-bdi-curated-dev
+      BucketName: tes3-raw-dev
       VersioningConfiguration:
         Status: Enabled
  bucket4:
     Type: 'AWS::S3::Bucket'
     DeletionPolicy: Retain
     Properties:
-      BucketName: entergy-bdi-datamart-dev
+      BucketName: tes4-raw-dev
       VersioningConfiguration:
         Status: Enabled
 
