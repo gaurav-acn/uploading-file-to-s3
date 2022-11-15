@@ -23,33 +23,16 @@
 #         - !Ref HTTPSecurityGroup
 
 AWSTemplateFormatVersion: 2010-09-09
-Description: >
-  This templates demonstrates the creation of a simple S3. 
-  bucket. It allows for parameterising the bucket name and
-  a few other attributes.
+Description: Template to create S3 bucket for Data Lake storage
 Parameters:
   BucketName: 
     Type: String
-    Description: The name of the bucket.
+    Description: Name of the bucket
+    Default: test-etl-dev,test2-etl-dev,test3-etl-dev,test4-etl-dev
   BucketAccessControl:
     Type: String
     Default: Private
-    AllowedValues:
-    - Private
-    - PublicRead
-    - PublicReadWrite
-    - AuthenticatedRead
-    - LogDeliveryWrite
-    - BucketOwnerRead
-    - BucketOwnerFullControl
-    - AwsExecRead
-    Description: Access control configuration for the bucket (default is Private).
-    VersioningConfiguration:
-      Status: Enabled
-    BucketEncryption:
-      ServerSideEncryptionConfiguration:
-        - ServerSideEncryptionByDefault:
-            SSEAlgorithm: 'aws:kms'
+    Description: Default access configuration is Private
     
 Resources:
   Bucket:
@@ -60,6 +43,12 @@ Resources:
       Tags:
       - Key: Name
         Value: !Join ['', [!Ref "AWS::StackName", "-Bucket"]]
+      VersioningConfiguration:
+        Status: Enabled
+      BucketEncryption:
+      ServerSideEncryptionConfiguration:
+        - ServerSideEncryptionByDefault:
+            SSEAlgorithm: 'aws:kms'
 
 #   HTTPSecurityGroup:
 #     Type: AWS::EC2::SecurityGroup
