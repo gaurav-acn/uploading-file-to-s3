@@ -46,9 +46,9 @@ Resources:
       VersioningConfiguration:
         Status: Enabled
       BucketEncryption:
-      ServerSideEncryptionConfiguration:
-        - ServerSideEncryptionByDefault:
-            SSEAlgorithm: 'aws:kms'
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: 'aws:kms'
 
 #   HTTPSecurityGroup:
 #     Type: AWS::EC2::SecurityGroup
