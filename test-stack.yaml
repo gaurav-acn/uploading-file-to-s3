@@ -1,34 +1,18 @@
----
-# Mappings:
-#   RegionEC2InstanceImageMap:
-#     us-east-1:
-#       HVM64: ami-0b0ea68c435eb488d 
-#       HVM32: ami-075a86d91e6db7f81
-# Parameters:
-#   EC2InstanceType:
-#     Description: The Instance Type Chosen for EC2
-#     Type: String
-    
-# Resources:
-#   TestInstance:
-#     Type: AWS::EC2::Instance
-#     Properties:
-#       AvailabilityZone: us-east-1a
-#       ImageId: !FindInMap
-#         - RegionEC2InstanceImageMap
-#         - !Ref 'AWS::Region'
-#         - HVM64
-#       InstanceType: !Ref EC2InstanceType
-#       SecurityGroups:
-#         - !Ref HTTPSecurityGroup
-
 AWSTemplateFormatVersion: 2010-09-09
 Description: Template to create S3 bucket for Data Lake storage
 Parameters:
-  BucketName: 
+  BucketName1: 
     Type: String
-    Description: Name of the bucket
-    Default: test-etl-dev,test2-etl-dev,test3-etl-dev,test4-etl-dev
+    Default: entergy-bdi-raw-dev
+  BucketName2: 
+    Type: String
+    Default: entergy-bdi-dataquality-dev
+  BucketName3: 
+    Type: String
+    Default: entergy-bdi-curated-dev
+  BucketName4: 
+    Type: String
+    Default: entergy-bdi-datamart-dev
   BucketAccessControl:
     Type: String
     Default: Private
@@ -38,7 +22,7 @@ Resources:
   Bucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: !Ref BucketName
+      BucketName: !Ref BucketName1,BucketName2,BucketName3,BucketName4 
       AccessControl: !Ref BucketAccessControl      
       Tags:
       - Key: Name
@@ -49,17 +33,9 @@ Resources:
         ServerSideEncryptionConfiguration:
           - ServerSideEncryptionByDefault:
               SSEAlgorithm: 'aws:kms'
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: True
+        BlockPublicPolicy: True
+        IgnorePublicAcls: True
+        RestrictPublicBuckets: True
 
-#   HTTPSecurityGroup:
-#     Type: AWS::EC2::SecurityGroup
-#     Properties:
-#       GroupDescription: Enable port 80 and port 443
-#       SecurityGroupIngress:
-#       - CidrIp: 0.0.0.0/0
-#         FromPort: 80
-#         IpProtocol: tcp
-#         ToPort: 80
-#       - CidrIp: 0.0.0.0/0
-#         FromPort: 443
-#         IpProtocol: tcp
-#         ToPort: 443
